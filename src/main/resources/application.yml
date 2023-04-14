@@ -7,10 +7,9 @@ spring.kafka:
   bootstrap-servers: localhost:9092
   consumer:
     key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
-    value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     properties:
       spring.json.trusted.packages: "*"
-      spring.json.value.default.type : com.achsat.travel.payment.model.Payment
 
   producer:
     key-serializer: org.apache.kafka.common.serialization.LongSerializer

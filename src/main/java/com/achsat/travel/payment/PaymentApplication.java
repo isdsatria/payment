@@ -24,8 +24,8 @@ public class PaymentApplication {
 
 	@Autowired
 	PaymentService paymentService;
-	@KafkaListener(id="transactions",topics="transactions",groupId="payment")
-	public void onEvent(Payment a){
+	@KafkaListener(id="transactions",topics="transaction-payment",groupId="payment")
+	public void onEvent(String a){
 		LOG.info("Received:{}" ,a );
 		paymentService.reply(a);
 	}
@@ -33,6 +33,14 @@ public class PaymentApplication {
 	@Bean
 	public NewTopic PaymentStatus(){
 		return TopicBuilder.name("payment-status")
+				.partitions(3)
+				.compact()
+				.build();
+	}
+
+	@Bean
+	public NewTopic TransactionPayment(){
+		return TopicBuilder.name("transaction-payment")
 				.partitions(3)
 				.compact()
 				.build();

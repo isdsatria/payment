@@ -11,8 +11,8 @@ public class PaymentService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PaymentService.class.getPackageName());
     private KafkaTemplate<String, String> template;
-    public void reply(Payment a){
-        LOGGER.info(a.getTransactionId() + " " + a.getPaymentMethod() + " " + a.getTransactionAmt());
+    public void reply(String a){
+        LOGGER.info(a);
     }
 }
 
